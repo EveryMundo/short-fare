@@ -72,16 +72,14 @@ class ShortFare {
 
   get _id () {
     return {
-      _id: {
-        a: this.a,
-        o: this.o,
-        d: this.d,
-        dd: this.dd,
-        rd: this.rd,
-        c: this.c,
-        tt: this.tt,
-        fc: this.fc
-      }
+      a: this.a,
+      o: this.o,
+      d: this.d,
+      dd: this.dd,
+      rd: this.rd,
+      c: this.c,
+      tt: this.tt,
+      fc: this.fc
     }
   }
 
