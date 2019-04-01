@@ -1,5 +1,18 @@
 
 class ShortFare {
+  constructor () {
+    this.a = undefined
+    this.o = undefined
+    this.d = undefined
+    this.dd = undefined
+    this.rd = undefined
+    this.c = undefined
+    this.tt = undefined
+    this.fc = undefined
+    this.p = undefined
+    this.ca = undefined
+  }
+
   get airlineIataCode () {
     return this.a
   }
