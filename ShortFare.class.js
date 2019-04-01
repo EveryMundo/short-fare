@@ -42,10 +42,10 @@ class ShortFare {
     this.c = v
   }
 
-  get tripType () {
+  get journeyType () {
     return this.tt
   }
-  set tripType (v) {
+  set journeyType (v) {
     this.tt = v
   }
 

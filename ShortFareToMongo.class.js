@@ -11,7 +11,7 @@ class ShortFareToMongo extends ShortFare {
     this.dd = doc.departureDate
     this.rd = doc.returnDate
     this.c = doc.currencyCode
-    this.tt = doc.tripType
+    this.tt = doc.journeyType
     this.fc = doc.fareClass
     this.p = doc.price
     this.ca = doc.createdAt

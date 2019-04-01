@@ -17,7 +17,7 @@ const doc = new ShortFareToMongo({
   departureDate: '2020-01-01',
   returnDate: '2020-02-01',
   currencyCode: 'USD',
-  tripType: 'RT', //RT || OW
+  journeyType: 'RT', //RT || OW
   fareClass: 'E', // E = Economy / B = Business
   price: 1234.34,
   createdAt: new Date(),
