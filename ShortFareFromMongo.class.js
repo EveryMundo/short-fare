@@ -9,7 +9,7 @@ class ShortFareFromMongo extends ShortFare {
 
     this.a = a
     this.o = o
-    this.o = d
+    this.d = d
     this.dd = dd
     this.rd = rd
     this.c = c
