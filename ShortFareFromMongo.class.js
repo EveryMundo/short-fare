@@ -5,7 +5,7 @@ class ShortFareFromMongo extends ShortFare {
   constructor (mongoDoc) {
     super()
 
-    const { _id: { a, o, d, dd, rd, c, tt, fc }, p, ca } = mongoDoc
+    const { _id: { a, o, d, dd, rd, c, jt, ft, se, fc }, p, ca } = mongoDoc
 
     this.a = a
     this.o = o
@@ -13,7 +13,9 @@ class ShortFareFromMongo extends ShortFare {
     this.dd = dd
     this.rd = rd
     this.c = c
-    this.tt = tt
+    this.jt = jt
+    this.ft = ft
+    this.se = se
     this.fc = fc
     this.p = p
     this.ca = ca

@@ -5,16 +5,18 @@ class ShortFareToMongo extends ShortFare {
   constructor (doc) {
     super()
 
-    this.a = doc.airlineIataCode
-    this.o = doc.departureAirportIataCode
-    this.d = doc.arrivalAirportIataCode
-    this.dd = doc.outboundDate
-    this.rd = doc.inboundDate
-    this.c = doc.currencyCode
-    this.tt = doc.journeyType
-    this.fc = doc.fareClass
-    this.p = doc.price
-    this.ca = doc.createdAt
+    this.airlineIataCode = doc.airlineIataCode
+    this.departureAirportIataCode = doc.departureAirportIataCode
+    this.arrivalAirportIataCode = doc.arrivalAirportIataCode
+    this.outboundDate = doc.outboundDate
+    this.inboundDate = doc.inboundDate
+    this.currencyCode = doc.currencyCode
+    this.journeyType = doc.journeyType
+    this.fareClass = doc.fareClass
+    this.flightType = doc.flightType
+    this.siteEdition = doc.siteEdition
+    this.totalPrice = doc.totalPrice
+    this.createdAt = doc.createdAt || new Date()
 
     Object.defineProperty(this, 'doc', { value: doc })
   }

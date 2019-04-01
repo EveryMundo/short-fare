@@ -1,22 +1,32 @@
 
+const siteEditionRegExp = /^[a-z]{2}-[A-Z]{2}$/
+const airlineIataCodeRegExp = /^[A-Z0-9]{2}$/
+const _3upperCasedLettersRegExp = /^[A-Z]{3}$/
+
 class ShortFare {
   constructor () {
-    this.a = undefined
-    this.o = undefined
-    this.d = undefined
-    this.dd = undefined
-    this.rd = undefined
-    this.c = undefined
-    this.tt = undefined
-    this.fc = undefined
-    this.p = undefined
-    this.ca = undefined
+    this.a = undefined // airlineIataCode
+    this.o = undefined // departureAirportIataCode
+    this.d = undefined // arrivalAirportIataCode
+    this.dd = undefined // outboundDate
+    this.rd = undefined // inboundDate
+    this.c = undefined // currencyCode
+    this.jt = undefined // journeyType
+    this.fc = undefined // fareClass
+    this.ft = undefined // flightType
+    this.se = undefined // siteEdition
+    this.p = undefined // totalPrice
+    this.ca = undefined // createdAt
   }
 
   get airlineIataCode () {
     return this.a
   }
   set airlineIataCode (v) {
+    if (!airlineIataCodeRegExp.test(v)) {
+      throw new Error(`airlineIataCode [${v}] does not match ${airlineIataCodeRegExp}`)
+    }
+
     this.a = v
   }
 
@@ -24,6 +34,10 @@ class ShortFare {
     return this.o
   }
   set departureAirportIataCode (v) {
+    if (!_3upperCasedLettersRegExp.test(v)) {
+      throw new Error(`departureAirportIataCode [${v}] does not match ${_3upperCasedLettersRegExp}`)
+    }
+
     this.o = v
   }
 
@@ -31,6 +45,10 @@ class ShortFare {
     return this.d
   }
   set arrivalAirportIataCode (v) {
+    if (!_3upperCasedLettersRegExp.test(v)) {
+      throw new Error(`arrivalAirportIataCode [${v}] does not match ${_3upperCasedLettersRegExp}`)
+    }
+
     this.d = v
   }
 
@@ -52,27 +70,67 @@ class ShortFare {
     return this.c
   }
   set currencyCode (v) {
+    if (!_3upperCasedLettersRegExp.test(v)) {
+      throw new Error(`currencyCode [${v}] does not match ${_3upperCasedLettersRegExp}`)
+    }
+
     this.c = v
   }
 
   get journeyType () {
-    return this.tt
+    return this.jt
   }
   set journeyType (v) {
-    this.tt = v
+    if (v === 'RT' || v === 'OW') {
+      this.jt = v
+
+      return
+    }
+
+    throw new Error(`journeyType [${v}] does not equal [RT] or [OW]`)
   }
 
   get fareClass () {
     return this.fc
   }
   set fareClass (v) {
-    this.fc = v
+    if (v === 'E' || v === 'B') {
+      this.fc = v
+
+      return
+    }
+
+    throw new Error(`fareClass [${v}] does not equal [E] or [B]`)
   }
 
-  get price () {
+  get flightType () {
+    return this.ft
+  }
+  set flightType (v) {
+    if (v === 'I' || v === 'D') {
+      this.ft = v
+
+      return
+    }
+
+    throw new Error(`flightType [${v}] does not equal [I] or [D]`)
+  }
+
+  get siteEdition () {
+    return this.se
+  }
+  set siteEdition (v) {
+    if (!siteEditionRegExp.test(v)) {
+      throw new Error(`siteEdition [${v}] does not match ${siteEditionRegExp}`)
+    }
+
+    this.se = v
+  }
+
+  get totalPrice () {
     return this.p
   }
-  set price (v) {
+  set totalPrice (v) {
     this.p = v
   }
 
@@ -91,7 +149,9 @@ class ShortFare {
       dd: this.dd,
       rd: this.rd,
       c: this.c,
-      tt: this.tt,
+      jt: this.jt,
+      ft: this.ft,
+      se: this.se,
       fc: this.fc
     }
   }
