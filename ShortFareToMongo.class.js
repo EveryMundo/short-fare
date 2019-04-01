@@ -8,8 +8,8 @@ class ShortFareToMongo extends ShortFare {
     this.a = doc.airlineIataCode
     this.o = doc.departureAirportIataCode
     this.d = doc.arrivalAirportIataCode
-    this.dd = doc.departureDate
-    this.rd = doc.returnDate
+    this.dd = doc.outboundDate
+    this.rd = doc.inboundDate
     this.c = doc.currencyCode
     this.tt = doc.journeyType
     this.fc = doc.fareClass

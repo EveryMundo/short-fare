@@ -14,8 +14,8 @@ const doc = new ShortFareToMongo({
   airlineIataCode: 'XX',
   departureAirportIataCode: 'MIA',
   arrivalAirportIataCode: 'JFK',
-  departureDate: '2020-01-01',
-  returnDate: '2020-02-01',
+  outboundDate: '2020-01-01',
+  inboundDate: '2020-02-01',
   currencyCode: 'USD',
   journeyType: 'RT', //RT || OW
   fareClass: 'E', // E = Economy / B = Business

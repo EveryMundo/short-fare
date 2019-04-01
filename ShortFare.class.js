@@ -21,17 +21,17 @@ class ShortFare {
     this.d = v
   }
 
-  get departureDate () {
+  get outboundDate () {
     return this.dd
   }
-  set departureDate (v) {
+  set outboundDate (v) {
     this.dd = v
   }
 
-  get returnDate () {
+  get inboundDate () {
     return this.rd
   }
-  set returnDate (v) {
+  set inboundDate (v) {
     this.rd = v
   }
 
