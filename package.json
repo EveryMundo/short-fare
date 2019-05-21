@@ -4,7 +4,7 @@
   "description": "Short fare document for the flow Mongo => Stitch => Kinesis => Lambda",
   "main": "index.js",
   "scripts": {
-    "test": "standard *.js && tap"
+    "test": "standard *.js && tap test/*.test.js"
   },
   "repository": {
     "type": "git",
