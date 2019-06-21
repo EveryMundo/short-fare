@@ -1,6 +1,6 @@
 {
   "name": "@everymundo/short-fare",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Short fare document for the flow Mongo => Stitch => Kinesis => Lambda",
   "main": "index.js",
   "scripts": {
