@@ -165,7 +165,8 @@ class ShortFare {
 
   get mongoUpdateDoc () {
     return {
-      $set: this.mongoDoc,
+      // $set: this.mongoDoc,
+      $set: {p: this.p},
       $setOnInsert: { ca: this.ca }
     }
   }
