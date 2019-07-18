@@ -17,6 +17,8 @@ class ShortFareToMongo extends ShortFare {
     this.siteEdition = doc.siteEdition
     this.totalPrice = doc.totalPrice
     this.createdAt = doc.createdAt || new Date()
+    this.sourceId = doc.sourceId
+    this.isSoldOut = doc.isSoldOut
 
     Object.defineProperty(this, 'doc', { value: doc })
   }

@@ -23,5 +23,8 @@ const doc = new ShortFareToMongo({
   siteEdition: ShortFareToMongo.formatSiteEdition('en-us'), // not required but enforces the format en_US
   totalPrice: 1234.34,
   createdAt: new Date(),
+  updatedAt: new Date(), // optional
+  isSoldOut: false, // defaults to false
+  sourceId: undefined // optional. Field can be used to track the origin of the document
 })
 ```

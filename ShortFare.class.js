@@ -25,6 +25,9 @@ class ShortFare {
     this.se = undefined // siteEdition
     this.p = undefined // totalPrice
     this.ca = undefined // createdAt
+    this.ua = undefined // createdAt
+    this.si = undefined // sourceId
+    this.so = false // isSoldOut
   }
 
   get airlineIataCode () {
@@ -64,6 +67,7 @@ class ShortFare {
     return this.dd
   }
   set outboundDate (v) {
+    if (!/\d{4}-\d{2}-\d{2}/.test(v)) throw new Error(`outboundDate [${v}] is not valid`)
     this.dd = v
   }
 
@@ -71,6 +75,7 @@ class ShortFare {
     return this.rd
   }
   set inboundDate (v) {
+    if (v !== undefined && !/\d{4}-\d{2}-\d{2}/.test(v)) throw new Error(`outboundDate [${v}] is not valid`)
     this.rd = v
   }
 
@@ -152,6 +157,27 @@ class ShortFare {
     this.ca = v
   }
 
+  get updatedAt () {
+    return this.ua
+  }
+  set updatedAt (v) {
+    this.ua = v
+  }
+
+  get sourceId () {
+    return this.si
+  }
+  set sourceId (v) {
+    this.si = v
+  }
+
+  get isSoldOut () {
+    return this.so
+  }
+  set isSoldOut (v) {
+    this.so = Boolean(v)
+  }
+
   get _id () {
     return {
       a: this.a,
@@ -178,7 +204,7 @@ class ShortFare {
     return {
       // $set: this.mongoDoc,
       $set: { p: this.p },
-      $setOnInsert: { ca: this.ca }
+      $setOnInsert: { ca: this.ca, ua: this.ua, si: this.si, so: this.so }
     }
   }
 
