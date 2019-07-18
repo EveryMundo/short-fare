@@ -6,7 +6,7 @@ const _3upperCasedLettersRegExp = /^[A-Z]{3}$/
 class ShortFare {
   static formatSiteEdition (siteEdition) {
     const [, lang, countryCode] = ('' + siteEdition).match(/^([A-Za-z]{2})[^A-Za-z]?([A-Za-z]{2})?$/) || []
-    console.log({ lang, countryCode })
+
     if (!lang) return `INVALID_SITE_EDITION [${siteEdition}]`
 
     return countryCode ? `${lang.toLowerCase()}_${countryCode.toUpperCase()}` : lang.toLowerCase()
