@@ -4,6 +4,14 @@ const airlineIataCodeRegExp = /^[A-Z0-9]{2}$/
 const _3upperCasedLettersRegExp = /^[A-Z]{3}$/
 
 class ShortFare {
+  static formatSiteEdition (siteEdition) {
+    const [, lang, countryCode] = ('' + siteEdition).match(/^([A-Za-z]{2})[^A-Za-z]?([A-Za-z]{2})?$/) || []
+    console.log({ lang, countryCode })
+    if (!lang) return `INVALID_SITE_EDITION [${siteEdition}]`
+
+    return countryCode ? `${lang.toLowerCase()}_${countryCode.toUpperCase()}` : lang.toLowerCase()
+  }
+
   constructor () {
     this.a = undefined // airlineIataCode
     this.o = undefined // departureAirportIataCode
@@ -93,14 +101,15 @@ class ShortFare {
   get fareClass () {
     return this.fc
   }
+
   set fareClass (v) {
-    if (v === 'E' || v === 'B') {
+    if (v === 'E' || v === 'B' || v === 'F') {
       this.fc = v
 
       return
     }
 
-    throw new Error(`fareClass [${v}] does not equal [E] or [B]`)
+    throw new Error(`fareClass [${v}] does not equal [E]CONOMY or [B]USINESS or [F]IRST`)
   }
 
   get flightType () {
@@ -120,6 +129,8 @@ class ShortFare {
     return this.se
   }
   set siteEdition (v) {
+    if (v === undefined) return
+
     if (!siteEditionRegExp.test(v)) {
       throw new Error(`siteEdition [${v}] does not match ${siteEditionRegExp}`)
     }
@@ -166,7 +177,7 @@ class ShortFare {
   get mongoUpdateDoc () {
     return {
       // $set: this.mongoDoc,
-      $set: {p: this.p},
+      $set: { p: this.p },
       $setOnInsert: { ca: this.ca }
     }
   }

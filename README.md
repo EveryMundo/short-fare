@@ -18,8 +18,10 @@ const doc = new ShortFareToMongo({
   inboundDate: '2020-02-01',
   currencyCode: 'USD',
   journeyType: 'RT', //RT || OW
-  fareClass: 'E', // E = Economy / B = Business
-  price: 1234.34,
+  fareClass: 'E', // E = ECONOMY / B = BUSINESS / F = FIRST
+  flightType: 'I', // I = INTERNATIONAL / D = DOMESTIC
+  siteEdition: ShortFareToMongo.formatSiteEdition('en-us'), // not required but enforces the format en_US
+  totalPrice: 1234.34,
   createdAt: new Date(),
 })
 ```
