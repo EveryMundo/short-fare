@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/EveryMundo/short-fare#readme",
   "devDependencies": {
-    "standard": "^13.0.2",
-    "tap": "^14.4.2"
+    "standard": "^14.3.1",
+    "tap": "^14.10.6"
   }
 }

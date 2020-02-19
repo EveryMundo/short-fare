@@ -2,6 +2,7 @@
 const siteEditionRegExp = /^[a-z]{2}-[A-Z]{2}$/
 const airlineIataCodeRegExp = /^[A-Z0-9]{2}$/
 const _3upperCasedLettersRegExp = /^[A-Z]{3}$/
+const dateRegExp = /\d{4}-\d{2}-\d{2}/
 
 class ShortFare {
   static formatSiteEdition (siteEdition) {
@@ -33,6 +34,7 @@ class ShortFare {
   get airlineIataCode () {
     return this.a
   }
+
   set airlineIataCode (v) {
     if (!airlineIataCodeRegExp.test(v)) {
       throw new Error(`airlineIataCode [${v}] does not match ${airlineIataCodeRegExp}`)
@@ -44,6 +46,7 @@ class ShortFare {
   get departureAirportIataCode () {
     return this.o
   }
+
   set departureAirportIataCode (v) {
     if (!_3upperCasedLettersRegExp.test(v)) {
       throw new Error(`departureAirportIataCode [${v}] does not match ${_3upperCasedLettersRegExp}`)
@@ -55,6 +58,7 @@ class ShortFare {
   get arrivalAirportIataCode () {
     return this.d
   }
+
   set arrivalAirportIataCode (v) {
     if (!_3upperCasedLettersRegExp.test(v)) {
       throw new Error(`arrivalAirportIataCode [${v}] does not match ${_3upperCasedLettersRegExp}`)
@@ -66,22 +70,31 @@ class ShortFare {
   get outboundDate () {
     return this.dd
   }
+
   set outboundDate (v) {
-    if (!/\d{4}-\d{2}-\d{2}/.test(v)) throw new Error(`outboundDate [${v}] is not valid`)
+    if (!dateRegExp.test(v)) {
+      throw new Error(`outboundDate [${v}] is not valid`)
+    }
+
     this.dd = v
   }
 
   get inboundDate () {
     return this.rd
   }
+
   set inboundDate (v) {
-    if (v !== undefined && !/\d{4}-\d{2}-\d{2}/.test(v)) throw new Error(`outboundDate [${v}] is not valid`)
+    if (v !== undefined && !dateRegExp.test(v)) {
+      throw new Error(`outboundDate [${v}] is not valid`)
+    }
+
     this.rd = v
   }
 
   get currencyCode () {
     return this.c
   }
+
   set currencyCode (v) {
     if (!_3upperCasedLettersRegExp.test(v)) {
       throw new Error(`currencyCode [${v}] does not match ${_3upperCasedLettersRegExp}`)
@@ -93,14 +106,13 @@ class ShortFare {
   get journeyType () {
     return this.jt
   }
-  set journeyType (v) {
-    if (v === 'RT' || v === 'OW') {
-      this.jt = v
 
-      return
+  set journeyType (v) {
+    if (v !== 'RT' && v !== 'OW') {
+      throw new Error(`journeyType [${v}] does not equal [RT] or [OW]`)
     }
 
-    throw new Error(`journeyType [${v}] does not equal [RT] or [OW]`)
+    this.jt = v
   }
 
   get fareClass () {
@@ -108,31 +120,29 @@ class ShortFare {
   }
 
   set fareClass (v) {
-    if (v === 'E' || v === 'B' || v === 'F') {
-      this.fc = v
-
-      return
+    if (v !== 'E' && v !== 'B' && v !== 'F') {
+      throw new Error(`fareClass [${v}] does not equal [E]CONOMY or [B]USINESS or [F]IRST`)
     }
 
-    throw new Error(`fareClass [${v}] does not equal [E]CONOMY or [B]USINESS or [F]IRST`)
+    this.fc = v
   }
 
   get flightType () {
     return this.ft
   }
-  set flightType (v) {
-    if (v === 'I' || v === 'D') {
-      this.ft = v
 
-      return
+  set flightType (v) {
+    if (v !== 'I' && v !== 'D') {
+      throw new Error(`flightType [${v}] does not equal [I] or [D]`)
     }
 
-    throw new Error(`flightType [${v}] does not equal [I] or [D]`)
+    this.ft = v
   }
 
   get siteEdition () {
     return this.se
   }
+
   set siteEdition (v) {
     if (v === undefined) return
 
@@ -146,6 +156,7 @@ class ShortFare {
   get totalPrice () {
     return this.p
   }
+
   set totalPrice (v) {
     this.p = v
   }
@@ -153,6 +164,7 @@ class ShortFare {
   get createdAt () {
     return this.ca
   }
+
   set createdAt (v) {
     this.ca = v
   }
@@ -160,6 +172,7 @@ class ShortFare {
   get updatedAt () {
     return this.ua
   }
+
   set updatedAt (v) {
     this.ua = v
   }
@@ -167,6 +180,7 @@ class ShortFare {
   get sourceId () {
     return this.si
   }
+
   set sourceId (v) {
     this.si = v
   }
@@ -174,6 +188,7 @@ class ShortFare {
   get isSoldOut () {
     return this.so
   }
+
   set isSoldOut (v) {
     this.so = Boolean(v)
   }
@@ -196,7 +211,11 @@ class ShortFare {
   get mongoDoc () {
     return {
       _id: this._id,
-      p: this.p
+      p: this.p,
+      ca: this.ca,
+      ua: this.ua,
+      si: this.si,
+      so: this.so
     }
   }
 
@@ -204,7 +223,12 @@ class ShortFare {
     return {
       // $set: this.mongoDoc,
       $set: { p: this.p },
-      $setOnInsert: { ca: this.ca, ua: this.ua, si: this.si, so: this.so }
+      $setOnInsert: {
+        ca: this.ca,
+        ua: this.ua,
+        si: this.si,
+        so: this.so
+      }
     }
   }
 
