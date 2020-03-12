@@ -1,6 +1,6 @@
 
 const siteEditionRegExp = /^[a-z]{2}-[A-Z]{2}$/
-const airlineIataCodeRegExp = /^[A-Z0-9]{2}$/
+const airlineIataCodeRegExp = /^[A-Z0-9]{2,3}$/
 const _3upperCasedLettersRegExp = /^[A-Z]{3}$/
 const dateRegExp = /\d{4}-\d{2}-\d{2}/
 
