@@ -20,6 +20,22 @@ class ShortFareBus extends ShortFare {
     this.aCtGeo = undefined // arrivalCityGeoId
   }
 
+  get tenantCode () {
+    return super.airlineIataCode
+  }
+
+  set tenantCode (v) {
+    try {
+      super.airlineIataCode = v
+    } catch (e) {
+      if (e.message.indexOf('airlineIataCode') > -1) {
+        e.message = e.message.replace('airlineIataCode', 'tenantCode')
+      }
+
+      throw e
+    }
+  }
+
   get departureAirportIataCode () {
     throw new Error('WRONG FIELD departureAirportIataCode! You must use departureBusStopId for Bus')
   }
@@ -57,8 +73,12 @@ class ShortFareBus extends ShortFare {
   }
 
   set departureCityGeoId (v) {
-    if (Number.isNaN(+v)) {
-      throw new Error('Invalid departureCityGeoId')
+    if (v == null) {
+      return (this.dCtGeo = v)
+    }
+
+    if (v != null && Number.isNaN(+v)) {
+      throw new Error(`Invalid departureCityGeoId [${v}] is not a Number`)
     }
 
     this.dCtGeo = +v
@@ -69,8 +89,12 @@ class ShortFareBus extends ShortFare {
   }
 
   set arrivalCityGeoId (v) {
-    if (Number.isNaN(+v)) {
-      throw new Error('Invalid arrivalCityGeoId')
+    if (v == null) {
+      return (this.aCtGeo = v)
+    }
+
+    if (v != null && Number.isNaN(+v)) {
+      throw new Error(`Invalid arrivalCityGeoId [${v}] is not a Number`)
     }
 
     this.aCtGeo = +v
@@ -101,7 +125,7 @@ class ShortFareBus extends ShortFare {
       rd: this.rd,
       c: this.c,
       jt: this.jt,
-      ft: this.ft,
+      // ft: this.ft,
       se: this.se,
       fc: this.fc
     }

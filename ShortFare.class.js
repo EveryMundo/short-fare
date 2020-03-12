@@ -2,7 +2,7 @@
 const siteEditionRegExp = /^[a-z]{2}-[A-Z]{2}$/
 const airlineIataCodeRegExp = /^[A-Z0-9]{2,3}$/
 const _3upperCasedLettersRegExp = /^[A-Z]{3}$/
-const dateRegExp = /\d{4}-\d{2}-\d{2}/
+const dateRegExp = /^\d{4}-\d{2}-\d{2}/
 
 class ShortFare {
   static formatSiteEdition (siteEdition) {
@@ -71,7 +71,9 @@ class ShortFare {
     return this.dd
   }
 
-  set outboundDate (v) {
+  set outboundDate (_v) {
+    const v = _v instanceof Date ? _v.toJSON() : _v
+
     if (!dateRegExp.test(v)) {
       throw new Error(`outboundDate [${v}] is not valid`)
     }
@@ -83,7 +85,8 @@ class ShortFare {
     return this.rd
   }
 
-  set inboundDate (v) {
+  set inboundDate (_v) {
+    const v = _v instanceof Date ? _v.toJSON() : _v
     if (v !== undefined && !dateRegExp.test(v)) {
       throw new Error(`outboundDate [${v}] is not valid`)
     }
