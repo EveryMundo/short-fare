@@ -123,8 +123,8 @@ class ShortFare {
   }
 
   set fareClass (v) {
-    if (v !== 'E' && v !== 'B' && v !== 'F') {
-      throw new Error(`fareClass [${v}] does not equal [E]CONOMY or [B]USINESS or [F]IRST`)
+    if (v !== 'E' && v !== 'B' && v !== 'F' && v !== 'PE') {
+      throw new Error(`fareClass [${v}] does not equal [E]CONOMY or [B]USINESS or [F]IRST or [PE]PREMIUM ECONOMY`)
     }
 
     this.fc = v
