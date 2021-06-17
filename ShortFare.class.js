@@ -22,6 +22,7 @@ class ShortFare {
     this.c = undefined // currencyCode
     this.jt = undefined // journeyType
     this.fc = undefined // fareClass
+    this.bc = undefined // brandedFareClass
     this.ft = undefined // flightType
     this.se = undefined // siteEdition
     this.p = undefined // totalPrice
@@ -118,6 +119,16 @@ class ShortFare {
     this.jt = v
   }
 
+  get brandedFareClass () {
+    return this.bc
+  }
+
+  set brandedFareClass (v) {
+    if (v == null) return
+
+    this.bc = v
+  }
+
   get fareClass () {
     return this.fc
   }
@@ -207,7 +218,8 @@ class ShortFare {
       jt: this.jt,
       ft: this.ft,
       se: this.se,
-      fc: this.fc
+      fc: this.fc,
+      bc: this.bc
     }
   }
 
