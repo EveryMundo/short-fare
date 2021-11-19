@@ -17,6 +17,7 @@ class ShortFareHotel {
     this.tc = undefined // tenantCode
     this.hc = undefined // hotelCode
     this.rc = undefined // rateCode
+    this.rt = undefined // roomType
     this.cid = undefined // checkInDate
     this.cod = undefined // checkOutDate
     this.n = undefined // nights
@@ -24,7 +25,7 @@ class ShortFareHotel {
     this.c = undefined // currencyCode
     this.p = undefined // totalPrice
     this.ca = undefined // createdAt
-    this.ua = undefined // createdAt
+    this.ua = undefined // updatedAt
     this.si = undefined // sourceId
   }
 
@@ -62,6 +63,18 @@ class ShortFareHotel {
     }
 
     this.rc = v
+  }
+  
+  get roomType () {
+    return this.rt
+  }
+
+  set roomType (v) {
+//     if (!_3to5upperCasedLettersRegExp.test(v)) {
+//       throw new Error(`rateCode [${v}] does not match ${_3to5upperCasedLettersRegExp}`)
+//     }
+
+    this.rt = v
   }
 
   get checkInDate () {
