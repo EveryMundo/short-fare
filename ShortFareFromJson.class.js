@@ -13,6 +13,7 @@ class ShortFareFromJson extends ShortFare {
     this.currencyCode = input.c // currencyCode
     this.journeyType = input.jt // journeyType
     this.fareClass = input.fc // fareClass
+    this.brandedFareClass = input.bc // brandedFareClass
     this.flightType = input.ft // flightType
     this.siteEdition = input.se // siteEdition
     this.totalPrice = input.p // totalPrice

@@ -20,6 +20,7 @@ const doc = new ShortFareToMongo({
   currencyCode: 'USD',
   journeyType: 'RT', //RT || OW
   fareClass: 'E', // E = ECONOMY / B = BUSINESS / F = FIRST
+  brandedFareClass: 'ECO-BASIC',
   flightType: 'I', // I = INTERNATIONAL / D = DOMESTIC
   siteEdition: ShortFareToMongo.formatSiteEdition('en-us'), // not required but enforces the format en_US
   totalPrice: 1234.34,

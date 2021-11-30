@@ -21,6 +21,7 @@ class ShortFareBusToMongo extends ShortFareBus {
       this.currencyCode = doc.currencyCode
       this.journeyType = doc.journeyType
       this.fareClass = doc.fareClass
+      this.brandedFareClass = doc.brandedFareClass
       this.siteEdition = doc.siteEdition
       this.totalPrice = doc.totalPrice
       this.createdAt = doc.createdAt || new Date()
