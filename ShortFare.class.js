@@ -21,6 +21,7 @@ class ShortFare {
     this.c = undefined // currencyCode
     this.jt = undefined // journeyType
     this.fc = undefined // fareClass
+    this.fi = undefined // fareClassInput
     this.ft = undefined // flightType
     this.se = undefined // siteEdition
     this.p = undefined // totalPrice
@@ -129,6 +130,14 @@ class ShortFare {
     this.fc = v
   }
 
+  get fareClassInput () {
+    return this.fi
+  }
+
+  set fareClassInput (v) {
+    this.fi = v
+  }
+
   get flightType () {
     return this.ft
   }
@@ -160,6 +169,8 @@ class ShortFare {
   }
 
   set totalPrice (v) {
+    if (v !== undefined && typeof v !== 'number') throw new Error(`totalPrice [${v}] is not a number`)
+
     this.p = v
   }
 
@@ -206,7 +217,8 @@ class ShortFare {
       jt: this.jt,
       ft: this.ft,
       se: this.se,
-      fc: this.fc
+      fc: this.fc,
+      fi: this.fi
     }
   }
 

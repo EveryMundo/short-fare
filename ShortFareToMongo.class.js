@@ -12,6 +12,7 @@ class ShortFareToMongo extends ShortFare {
     this.currencyCode = doc.currencyCode
     this.journeyType = doc.journeyType
     this.fareClass = doc.fareClass
+    this.fareClassInput = doc.fareClassInput
     this.flightType = doc.flightType
     this.siteEdition = doc.siteEdition
     this.totalPrice = doc.totalPrice
