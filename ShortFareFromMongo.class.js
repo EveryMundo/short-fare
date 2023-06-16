@@ -1,4 +1,3 @@
-
 const { ShortFare } = require('./ShortFare.class')
 
 class ShortFareFromMongo extends ShortFare {

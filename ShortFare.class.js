@@ -1,4 +1,3 @@
-
 const siteEditionRegExp = /^[a-z]{2}-[A-Z]{2}$/
 const airlineIataCodeRegExp = /^[A-Z0-9]{2,3}$/
 const _3upperCasedLettersRegExp = /^[A-Z]{3}$/

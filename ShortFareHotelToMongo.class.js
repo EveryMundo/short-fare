@@ -1,4 +1,3 @@
-
 const { ShortFareHotel } = require('./ShortFareHotel.class')
 
 class ShortFareHotelToMongo extends ShortFareHotel {

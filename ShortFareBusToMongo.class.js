@@ -1,4 +1,3 @@
-
 const { ShortFareBus } = require('./ShortFareBus.class')
 
 class ShortFareBusToMongo extends ShortFareBus {

@@ -1,4 +1,3 @@
-
 const siteEditionRegExp = /^[a-z]{2}-[A-Z]{2}$/
 const tenantCodeRegExp = /^[A-Z0-9]{2,4}$/
 const _3to5upperCasedLettersRegExp = /^[A-Z]{3,5}$/
@@ -64,15 +63,15 @@ class ShortFareHotel {
 
     this.rc = v
   }
-  
+
   get roomType () {
     return this.rt
   }
 
   set roomType (v) {
-//     if (!_3to5upperCasedLettersRegExp.test(v)) {
-//       throw new Error(`rateCode [${v}] does not match ${_3to5upperCasedLettersRegExp}`)
-//     }
+    //     if (!_3to5upperCasedLettersRegExp.test(v)) {
+    //       throw new Error(`rateCode [${v}] does not match ${_3to5upperCasedLettersRegExp}`)
+    //     }
 
     this.rt = v
   }
