@@ -1,3 +1,4 @@
+'use strict'
 /* eslint-disable no-unused-expressions */
 const { describe, it, describe: context } = require('mocha')
 const { expect } = require('chai')

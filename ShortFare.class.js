@@ -1,3 +1,4 @@
+'use strict'
 const siteEditionRegExp = /^[a-z]{2}-[A-Z]{2}$/
 const airlineIataCodeRegExp = /^[A-Z0-9]{2,3}$/
 const _3upperCasedLettersRegExp = /^[A-Z]{3}$/
@@ -10,6 +11,57 @@ class ShortFare {
     if (!lang) return `INVALID_SITE_EDITION [${siteEdition}]`
 
     return countryCode ? `${lang.toLowerCase()}_${countryCode.toUpperCase()}` : lang.toLowerCase()
+  }
+
+  static fromMongoDoc (mongoDoc, _instance) {
+    const sf = _instance instanceof this
+      ? _instance
+      : new this()
+
+    const { _id, p, ca, ua, si, so } = mongoDoc
+
+    sf.a = _id.a
+    sf.o = _id.o
+    sf.d = _id.d
+    sf.dd = _id.dd
+    sf.rd = _id.rd
+    sf.c = _id.c
+    sf.jt = _id.jt
+    sf.ft = _id.ft
+    sf.se = _id.se
+    sf.fc = _id.fc
+    sf.fi = _id.fi
+    sf.p = p
+    sf.ca = ca
+    sf.ua = ua
+    sf.si = si
+    sf.so = so
+
+    return sf
+  }
+
+  static fromObject (doc, _instance) {
+    const sf = _instance instanceof this
+      ? _instance
+      : new this()
+
+    sf.airlineIataCode = doc.airlineIataCode
+    sf.departureAirportIataCode = doc.departureAirportIataCode
+    sf.arrivalAirportIataCode = doc.arrivalAirportIataCode
+    sf.outboundDate = doc.outboundDate
+    sf.inboundDate = doc.inboundDate
+    sf.currencyCode = doc.currencyCode
+    sf.journeyType = doc.journeyType
+    sf.fareClass = doc.fareClass
+    sf.fareClassInput = doc.fareClassInput
+    sf.flightType = doc.flightType
+    sf.siteEdition = doc.siteEdition
+    sf.totalPrice = doc.totalPrice
+    sf.createdAt = doc.createdAt || new Date()
+    sf.sourceId = doc.sourceId
+    sf.isSoldOut = doc.isSoldOut
+
+    return sf
   }
 
   constructor () {
