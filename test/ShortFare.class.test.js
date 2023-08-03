@@ -60,6 +60,8 @@ describe('ShortFare', () => {
       expect(shortFare.fi).to.be.undefined
       expect(shortFare.ft).to.be.undefined
       expect(shortFare.se).to.be.undefined
+      expect(shortFare.u).to.be.undefined
+      expect(shortFare.am).to.be.undefined
       expect(shortFare.p).to.be.undefined
       expect(shortFare.ca).to.be.undefined
       expect(shortFare.ua).to.be.undefined
@@ -280,6 +282,52 @@ describe('ShortFare', () => {
     })
   })
 
+  describe('unit', () => {
+    it('should set the unit property with M', () => {
+      const shortFare = new ShortFare()
+      shortFare.unit = 'M'
+
+      expect(shortFare.u).to.equal('M')
+      expect(shortFare.unit).to.equal('M')
+    })
+
+    it('should set the unit property with P', () => {
+      const shortFare = new ShortFare()
+      shortFare.unit = 'P'
+
+      expect(shortFare.u).to.equal('P')
+      expect(shortFare.unit).to.equal('P')
+    })
+
+    it('should throw an error for invalid unit', () => {
+      const shortFare = new ShortFare()
+      expect(() => {
+        shortFare.unit = 'invalid'
+      }).to.throw(Error, 'unit [invalid] does not equal [M]iles or [P]oints')
+    })
+  })
+
+  describe('amount', () => {
+    context('when given a valid amount', () => {
+      it('should set the amount', () => {
+        const shortFare = new ShortFare()
+        const amount = 12333
+        shortFare.amount = amount
+        expect(shortFare.am).to.equal(shortFare.amount)
+      })
+    })
+
+    context('when given an invalid amount', () => {
+      it('should throw an error', () => {
+        const shortFare = new ShortFare()
+        const amount = 'invalid'
+        expect(() => {
+          shortFare.amount = amount
+        }).to.throw(Error)
+      })
+    })
+  })
+
   describe('totalPrice', () => {
     context('when given a valid total price', () => {
       it('should set the total price', () => {
@@ -364,6 +412,8 @@ describe('ShortFare', () => {
         },
         ca: undefined,
         p: undefined,
+        am: undefined,
+        u: undefined,
         si: undefined,
         so: false,
         ua: undefined
@@ -380,8 +430,8 @@ describe('ShortFare', () => {
 
       const expected = {
 
-        $set: { p: undefined },
-        $setOnInsert: { ca: undefined, ua: undefined, si: undefined, so: false }
+        $set: { p: undefined, am: undefined },
+        $setOnInsert: { ca: undefined, ua: undefined, si: undefined, so: false, u: undefined }
       }
 
       const result = shortFare.mongoUpdateDoc
@@ -410,8 +460,8 @@ describe('ShortFare', () => {
           }
         },
         {
-          $set: { p: undefined },
-          $setOnInsert: { ca: undefined, ua: undefined, si: undefined, so: false }
+          $set: { p: undefined, am: undefined },
+          $setOnInsert: { ca: undefined, ua: undefined, si: undefined, so: false, u: undefined }
         },
         { upsert: true }
       ]

@@ -20,7 +20,9 @@ function createDefaultShortFare () {
     siteEdition: 'en-US',
     totalPrice: 100,
     sourceId: '1234567890',
-    isSoldOut: false
+    isSoldOut: false,
+    unit: 'M',
+    amount: 11223
   })
 
   return shortFare
@@ -47,6 +49,8 @@ describe('ShortFareToMongo', () => {
     expect(shortFare).to.have.property('fi', 'Eco')
     expect(shortFare).to.have.property('ft', 'D')// for Domestic
     expect(shortFare).to.have.property('se', 'en-US')
+    expect(shortFare).to.have.property('u', 'M')
+    expect(shortFare).to.have.property('am', 11223)
     expect(shortFare).to.have.property('p', 100)
     expect(shortFare).to.have.property('ca', shortFare.createdAt)
     expect(shortFare).to.have.property('si', shortFare.sourceId)

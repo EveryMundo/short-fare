@@ -18,7 +18,7 @@ class ShortFare {
       ? _instance
       : new this()
 
-    const { _id, p, ca, ua, si, so } = mongoDoc
+    const { _id, p, am, u, ca, ua, si, so } = mongoDoc
 
     sf.a = _id.a
     sf.o = _id.o
@@ -32,6 +32,8 @@ class ShortFare {
     sf.fc = _id.fc
     sf.fi = _id.fi
     sf.p = p
+    sf.u = u
+    sf.am = am
     sf.ca = ca
     sf.ua = ua
     sf.si = si
@@ -54,9 +56,11 @@ class ShortFare {
     sf.journeyType = doc.journeyType
     sf.fareClass = doc.fareClass
     sf.fareClassInput = doc.fareClassInput
+    sf.unit = doc.unit
     sf.flightType = doc.flightType
     sf.siteEdition = doc.siteEdition
     sf.totalPrice = doc.totalPrice
+    sf.amount = doc.amount
     sf.createdAt = doc.createdAt || new Date()
     sf.sourceId = doc.sourceId
     sf.isSoldOut = doc.isSoldOut
@@ -76,6 +80,8 @@ class ShortFare {
     this.fi = undefined // fareClassInput
     this.ft = undefined // flightType
     this.se = undefined // siteEdition
+    this.u = undefined // unit
+    this.am = undefined // amount, just for miles
     this.p = undefined // totalPrice
     this.ca = undefined // createdAt
     this.ua = undefined // createdAt
@@ -216,6 +222,30 @@ class ShortFare {
     this.se = v
   }
 
+  get unit () {
+    return this.u
+  }
+
+  set unit (v) {
+    if (v !== undefined && v !== 'M' && v !== 'P') {
+      throw new Error(`unit [${v}] does not equal [M]iles or [P]oints`)
+    }
+
+    this.u = v
+  }
+
+  get amount () {
+    return this.am
+  }
+
+  set amount (v) {
+    if (v !== undefined && typeof v !== 'number') {
+      throw new Error(`amount [${v}] is not a number`)
+    }
+
+    this.am = v
+  }
+
   get totalPrice () {
     return this.p
   }
@@ -277,6 +307,8 @@ class ShortFare {
   get mongoDoc () {
     return {
       _id: this._id,
+      u: this.u,
+      am: this.am,
       p: this.p,
       ca: this.ca,
       ua: this.ua,
@@ -288,12 +320,13 @@ class ShortFare {
   get mongoUpdateDoc () {
     return {
       // $set: this.mongoDoc,
-      $set: { p: this.p },
+      $set: { p: this.p, am: this.am },
       $setOnInsert: {
         ca: this.ca,
         ua: this.ua,
         si: this.si,
-        so: this.so
+        so: this.so,
+        u: this.u
       }
     }
   }
