@@ -18,7 +18,8 @@ function createDefaultShortFare () {
       ft: 'D',
       se: 'en-US',
       fc: 'E',
-      fi: 'Eco'
+      fi: 'Eco',
+      btc: 'Premier'
     },
     p: 100,
     u: undefined,
@@ -51,6 +52,7 @@ describe('ShortFareFromMongo', () => {
     expect(shortFare).to.have.property('journeyType', 'RT')
     expect(shortFare).to.have.property('fareClass', 'E') // for Economy
     expect(shortFare).to.have.property('fareClassInput', 'Eco')
+    expect(shortFare).to.have.property('brandedFareClass', 'Premier')
     expect(shortFare).to.have.property('flightType', 'D')// for Domestic
     expect(shortFare).to.have.property('siteEdition', 'en-US')
     expect(shortFare).to.have.property('amount', undefined)

@@ -31,6 +31,7 @@ class ShortFare {
     sf.se = _id.se
     sf.fc = _id.fc
     sf.fi = _id.fi
+    sf.btc = _id.btc
     sf.p = p
     sf.u = u
     sf.am = am
@@ -56,6 +57,7 @@ class ShortFare {
     sf.journeyType = doc.journeyType
     sf.fareClass = doc.fareClass
     sf.fareClassInput = doc.fareClassInput
+    sf.brandedFareClass = doc.brandedFareClass
     sf.unit = doc.unit
     sf.flightType = doc.flightType
     sf.siteEdition = doc.siteEdition
@@ -78,6 +80,7 @@ class ShortFare {
     this.jt = undefined // journeyType
     this.fc = undefined // fareClass
     this.fi = undefined // fareClassInput
+    this.btc = undefined // brandedFareClass
     this.ft = undefined // flightType
     this.se = undefined // siteEdition
     this.u = undefined // unit
@@ -196,6 +199,14 @@ class ShortFare {
     this.fi = v
   }
 
+  get brandedFareClass () {
+    return this.btc
+  }
+
+  set brandedFareClass (v) {
+    this.btc = v
+  }
+
   get flightType () {
     return this.ft
   }
@@ -300,7 +311,8 @@ class ShortFare {
       ft: this.ft,
       se: this.se,
       fc: this.fc,
-      fi: this.fi
+      fi: this.fi,
+      btc: this.btc
     }
   }
 

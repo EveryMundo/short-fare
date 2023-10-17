@@ -16,6 +16,7 @@ function createDefaultShortFare () {
   shortFare.journeyType = 'RT'
   shortFare.fareClass = 'E' // for Economy
   shortFare.fareClassInput = 'Eco'
+  shortFare.brandedFareClass = 'Premier'
   shortFare.flightType = 'D' // for Domestic
   shortFare.siteEdition = 'en-US'
 
@@ -58,6 +59,7 @@ describe('ShortFare', () => {
       expect(shortFare.jt).to.be.undefined
       expect(shortFare.fc).to.be.undefined
       expect(shortFare.fi).to.be.undefined
+      expect(shortFare.btc).to.be.undefined
       expect(shortFare.ft).to.be.undefined
       expect(shortFare.se).to.be.undefined
       expect(shortFare.u).to.be.undefined
@@ -225,12 +227,22 @@ describe('ShortFare', () => {
   })
 
   describe('fareClassInput', () => {
-    it('should set the fareClass property', () => {
+    it('should set the fareClassInput property', () => {
       const shortFare = new ShortFare()
       shortFare.fareClassInput = 'Eco'
 
       expect(shortFare.fi).to.equal('Eco')
       expect(shortFare.fareClassInput).to.equal('Eco')
+    })
+  })
+
+  describe('brandedFareClass', () => {
+    it('should set the brandedFareClass property', () => {
+      const shortFare = new ShortFare()
+      shortFare.brandedFareClass = 'Premier'
+
+      expect(shortFare.btc).to.equal('Premier')
+      expect(shortFare.brandedFareClass).to.equal('Premier')
     })
   })
 
@@ -407,6 +419,7 @@ describe('ShortFare', () => {
           jt: 'RT',
           fc: 'E',
           fi: 'Eco',
+          btc: 'Premier',
           ft: 'D',
           se: 'en-US'
         },
@@ -455,6 +468,7 @@ describe('ShortFare', () => {
             jt: 'RT',
             fc: 'E',
             fi: 'Eco',
+            btc: 'Premier',
             ft: 'D',
             se: 'en-US'
           }
