@@ -5,6 +5,49 @@ const _3upperCasedLettersRegExp = /^[A-Z]{3}$/
 const dateRegExp = /^\d{4}-\d{2}-\d{2}/
 
 class ShortFare {
+  a = undefined // airlineIataCode
+  o = undefined // departureAirportIataCode
+  d = undefined // arrivalAirportIataCode
+  dd = undefined // outboundDate
+  rd = undefined // inboundDate
+  c = undefined // currencyCode
+  jt = undefined // journeyType
+  fc = undefined // fareClass
+  fi = undefined // fareClassInput
+  btc = undefined // brandedFareClass
+  ft = undefined // flightType
+  se = undefined // siteEdition
+  u = undefined // unit
+  am = undefined // amount, just for miles
+  p = undefined // totalPrice
+  ca = undefined // createdAt
+  ua = undefined // createdAt
+  si = undefined // sourceId
+  so = false // isSoldOut
+
+  constructor (emptyValue) {
+    if (emptyValue !== undefined) {
+      this.a = emptyValue // airlineIataCode
+      this.o = emptyValue // departureAirportIataCode
+      this.d = emptyValue // arrivalAirportIataCode
+      this.dd = emptyValue // outboundDate
+      this.rd = emptyValue // inboundDate
+      this.c = emptyValue // currencyCode
+      this.jt = emptyValue // journeyType
+      this.fc = emptyValue // fareClass
+      this.fi = emptyValue // fareClassInput
+      this.btc = emptyValue // brandedFareClass
+      this.ft = emptyValue // flightType
+      this.se = emptyValue // siteEdition
+      this.u = emptyValue // unit
+      this.am = emptyValue // amount, just for miles
+      this.p = emptyValue // totalPrice
+      this.ca = emptyValue // createdAt
+      this.ua = emptyValue // createdAt
+      this.si = emptyValue // sourceId
+    }
+  }
+
   static formatSiteEdition (siteEdition) {
     const [, lang, countryCode] = ('' + siteEdition).match(/^([A-Za-z]{2})[^A-Za-z]?([A-Za-z]{2})?$/) || []
 
@@ -58,38 +101,17 @@ class ShortFare {
     sf.fareClass = doc.fareClass
     sf.fareClassInput = doc.fareClassInput
     sf.brandedFareClass = doc.brandedFareClass
-    sf.unit = doc.unit
     sf.flightType = doc.flightType
     sf.siteEdition = doc.siteEdition
-    sf.totalPrice = doc.totalPrice
+    sf.unit = doc.unit
     sf.amount = doc.amount
-    sf.createdAt = doc.createdAt || new Date()
+    sf.totalPrice = doc.totalPrice
+    sf.createdAt = doc.createdAt ?? new Date()
+    sf.updatedAt = doc.updatedAt ?? new Date()
     sf.sourceId = doc.sourceId
     sf.isSoldOut = doc.isSoldOut
 
     return sf
-  }
-
-  constructor () {
-    this.a = undefined // airlineIataCode
-    this.o = undefined // departureAirportIataCode
-    this.d = undefined // arrivalAirportIataCode
-    this.dd = undefined // outboundDate
-    this.rd = undefined // inboundDate
-    this.c = undefined // currencyCode
-    this.jt = undefined // journeyType
-    this.fc = undefined // fareClass
-    this.fi = undefined // fareClassInput
-    this.btc = undefined // brandedFareClass
-    this.ft = undefined // flightType
-    this.se = undefined // siteEdition
-    this.u = undefined // unit
-    this.am = undefined // amount, just for miles
-    this.p = undefined // totalPrice
-    this.ca = undefined // createdAt
-    this.ua = undefined // createdAt
-    this.si = undefined // sourceId
-    this.so = false // isSoldOut
   }
 
   get airlineIataCode () {

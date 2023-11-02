@@ -6,7 +6,7 @@ class ShortFareFromMongo extends ShortFare {
 
     ShortFare.fromMongoDoc(mongoDoc, this)
 
-    Object.defineProperty(this, 'mongoDoc', { value: mongoDoc })
+    // Object.defineProperty(this, 'mongoDoc', { value: mongoDoc })
   }
 }
 
