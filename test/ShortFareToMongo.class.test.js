@@ -21,6 +21,7 @@ function createDefaultShortFare () {
     siteEdition: 'en-US',
     totalPrice: 100,
     sourceId: '1234567890',
+    fareId: 'test-fare-id',
     isSoldOut: false,
     unit: 'M',
     amount: 11223
@@ -56,6 +57,7 @@ describe('ShortFareToMongo', () => {
     expect(shortFare).to.have.property('p', 100)
     expect(shortFare).to.have.property('ca', shortFare.createdAt)
     expect(shortFare).to.have.property('si', shortFare.sourceId)
+    expect(shortFare).to.have.property('fid', shortFare.fareId)
     expect(shortFare).to.have.property('so', shortFare.isSoldOut)
   })
 })

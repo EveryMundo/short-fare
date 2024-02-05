@@ -69,6 +69,7 @@ describe('ShortFare', () => {
         expect(shortFare.ca).to.be.undefined
         expect(shortFare.ua).to.be.undefined
         expect(shortFare.si).to.be.undefined
+        expect(shortFare.fid).to.be.undefined
         expect(shortFare.so).to.be.false
       })
     })
@@ -94,6 +95,7 @@ describe('ShortFare', () => {
         expect(shortFare.ca).to.be.null
         expect(shortFare.ua).to.be.null
         expect(shortFare.si).to.be.null
+        expect(shortFare.fid).to.be.null
         expect(shortFare.so).to.be.false
       })
     })
@@ -120,6 +122,7 @@ describe('ShortFare', () => {
           ca: new Date('2023-06-20T16:40:57.485Z'),
           p: 1564.62,
           si: '1234567890',
+          fid: 'test-fare-id',
           so: false,
           ua: null
         }
@@ -144,6 +147,7 @@ describe('ShortFare', () => {
         expect(shortFare.ca).to.equal(mongoDoc.ca)
         expect(shortFare.ua).to.be.null
         expect(shortFare.si).to.equal(mongoDoc.si)
+        expect(shortFare.fid).to.equal(mongoDoc.fid)
         expect(shortFare.so).to.equal(mongoDoc.so)
       })
     })
@@ -171,6 +175,7 @@ describe('ShortFare', () => {
           createdAt: new Date('2023-06-20T16:40:57.485Z'),
           updatedAt: new Date(),
           sourceId: '1234567890',
+          fareId: 'test-fare-id',
           isSoldOut: false
         }
 
@@ -194,6 +199,7 @@ describe('ShortFare', () => {
         expect(shortFare.ca).to.equal(obj.createdAt)
         expect(shortFare.ua).to.equal(obj.updatedAt)
         expect(shortFare.si).to.equal(obj.sourceId)
+        expect(shortFare.fid).to.equal(obj.fareId)
         expect(shortFare.so).to.equal(obj.isSoldOut)
       })
     })
@@ -515,6 +521,15 @@ describe('ShortFare', () => {
     })
   })
 
+  describe('fareId', () => {
+    it('should return the correct fare ID', () => {
+      const shortFare = new ShortFare()
+      const fareId = 'test-fare-id'
+      shortFare.fareId = fareId
+      expect(shortFare.fareId).to.equal(fareId)
+    })
+  })
+
   describe('isSoldOut', () => {
     it('should return true if the flight is sold out', () => {
       const shortFare = new ShortFare()
@@ -555,6 +570,7 @@ describe('ShortFare', () => {
         am: undefined,
         u: undefined,
         si: undefined,
+        fid: undefined,
         so: false,
         ua: undefined
       }
@@ -571,7 +587,7 @@ describe('ShortFare', () => {
       const expected = {
 
         $set: { p: undefined, am: undefined },
-        $setOnInsert: { ca: undefined, ua: undefined, si: undefined, so: false, u: undefined }
+        $setOnInsert: { ca: undefined, ua: undefined, si: undefined, fid: undefined, so: false, u: undefined }
       }
 
       const result = shortFare.mongoUpdateDoc
@@ -602,7 +618,7 @@ describe('ShortFare', () => {
         },
         {
           $set: { p: undefined, am: undefined },
-          $setOnInsert: { ca: undefined, ua: undefined, si: undefined, so: false, u: undefined }
+          $setOnInsert: { ca: undefined, ua: undefined, si: undefined, fid: undefined, so: false, u: undefined }
         },
         { upsert: true }
       ]

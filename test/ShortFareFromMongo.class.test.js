@@ -27,6 +27,7 @@ function createDefaultShortFare () {
     ca: '2021-01-01T00:00:00.000Z',
     ua: '2021-01-01T00:00:00.000Z',
     si: '1234567890',
+    fid: 'test-fare-id',
     so: false
   })
 
@@ -57,5 +58,6 @@ describe('ShortFareFromMongo', () => {
     expect(shortFare).to.have.property('siteEdition', 'en-US')
     expect(shortFare).to.have.property('amount', undefined)
     expect(shortFare).to.have.property('unit', undefined)
+    expect(shortFare).to.have.property('fareId', 'test-fare-id')
   })
 })

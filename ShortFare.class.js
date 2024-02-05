@@ -24,6 +24,7 @@ class ShortFare {
   ua = undefined // createdAt
   si = undefined // sourceId
   so = false // isSoldOut
+  fid = undefined // fareId
 
   constructor (emptyValue) {
     if (emptyValue !== undefined) {
@@ -45,6 +46,7 @@ class ShortFare {
       this.ca = emptyValue // createdAt
       this.ua = emptyValue // createdAt
       this.si = emptyValue // sourceId
+      this.fid = emptyValue // fareId
     }
   }
 
@@ -61,7 +63,7 @@ class ShortFare {
       ? _instance
       : new this()
 
-    const { _id, p, am, u, ca, ua, si, so } = mongoDoc
+    const { _id, p, am, u, ca, ua, si, so, fid } = mongoDoc
 
     sf.a = _id.a
     sf.o = _id.o
@@ -82,6 +84,7 @@ class ShortFare {
     sf.ua = ua
     sf.si = si
     sf.so = so
+    sf.fid = fid
 
     return sf
   }
@@ -110,6 +113,7 @@ class ShortFare {
     sf.updatedAt = doc.updatedAt ?? new Date()
     sf.sourceId = doc.sourceId
     sf.isSoldOut = doc.isSoldOut
+    sf.fareId = doc.fareId
 
     return sf
   }
@@ -321,6 +325,14 @@ class ShortFare {
     this.so = Boolean(v)
   }
 
+  get fareId () {
+    return this.fid
+  }
+
+  set fareId (v) {
+    this.fid = v
+  }
+
   get _id () {
     return {
       a: this.a,
@@ -347,7 +359,8 @@ class ShortFare {
       ca: this.ca,
       ua: this.ua,
       si: this.si,
-      so: this.so
+      so: this.so,
+      fid: this.fid
     }
   }
 
@@ -360,7 +373,8 @@ class ShortFare {
         ua: this.ua,
         si: this.si,
         so: this.so,
-        u: this.u
+        u: this.u,
+        fid: this.fid
       }
     }
   }
