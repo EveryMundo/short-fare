@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-expressions */
 const { describe, it, describe: context } = require('mocha')
 const { expect } = require('chai')
-const { ShortFare } = require('../ShortFare.class')
+const { ShortFare } = require('../ShortFare.class.js')
 
 function createDefaultShortFare () {
   const shortFare = new ShortFare()
@@ -48,27 +48,154 @@ describe('ShortFare', () => {
   })
 
   describe('constructor', () => {
-    it('should create a new ShortFare object with the correct properties', () => {
-      const shortFare = new ShortFare()
-      expect(shortFare.a).to.be.undefined
-      expect(shortFare.o).to.be.undefined
-      expect(shortFare.d).to.be.undefined
-      expect(shortFare.dd).to.be.undefined
-      expect(shortFare.rd).to.be.undefined
-      expect(shortFare.c).to.be.undefined
-      expect(shortFare.jt).to.be.undefined
-      expect(shortFare.fc).to.be.undefined
-      expect(shortFare.fi).to.be.undefined
-      expect(shortFare.btc).to.be.undefined
-      expect(shortFare.ft).to.be.undefined
-      expect(shortFare.se).to.be.undefined
-      expect(shortFare.u).to.be.undefined
-      expect(shortFare.am).to.be.undefined
-      expect(shortFare.p).to.be.undefined
-      expect(shortFare.ca).to.be.undefined
-      expect(shortFare.ua).to.be.undefined
-      expect(shortFare.si).to.be.undefined
-      expect(shortFare.so).to.be.false
+    describe('when no emptyValue is given', () => {
+      it('should create a new ShortFare object with the correct properties set as undefined', () => {
+        const shortFare = new ShortFare()
+        expect(shortFare.a).to.be.undefined
+        expect(shortFare.o).to.be.undefined
+        expect(shortFare.d).to.be.undefined
+        expect(shortFare.dd).to.be.undefined
+        expect(shortFare.rd).to.be.undefined
+        expect(shortFare.c).to.be.undefined
+        expect(shortFare.jt).to.be.undefined
+        expect(shortFare.fc).to.be.undefined
+        expect(shortFare.fi).to.be.undefined
+        expect(shortFare.btc).to.be.undefined
+        expect(shortFare.ft).to.be.undefined
+        expect(shortFare.se).to.be.undefined
+        expect(shortFare.u).to.be.undefined
+        expect(shortFare.am).to.be.undefined
+        expect(shortFare.p).to.be.undefined
+        expect(shortFare.ca).to.be.undefined
+        expect(shortFare.ua).to.be.undefined
+        expect(shortFare.si).to.be.undefined
+        expect(shortFare.so).to.be.false
+      })
+    })
+
+    describe('when emptyValue is set to null', () => {
+      it('should create a new ShortFare object with the correct properties set as undefined', () => {
+        const shortFare = new ShortFare(null)
+        expect(shortFare.a).to.be.null
+        expect(shortFare.o).to.be.null
+        expect(shortFare.d).to.be.null
+        expect(shortFare.dd).to.be.null
+        expect(shortFare.rd).to.be.null
+        expect(shortFare.c).to.be.null
+        expect(shortFare.jt).to.be.null
+        expect(shortFare.fc).to.be.null
+        expect(shortFare.fi).to.be.null
+        expect(shortFare.btc).to.be.null
+        expect(shortFare.ft).to.be.null
+        expect(shortFare.se).to.be.null
+        expect(shortFare.u).to.be.null
+        expect(shortFare.am).to.be.null
+        expect(shortFare.p).to.be.null
+        expect(shortFare.ca).to.be.null
+        expect(shortFare.ua).to.be.null
+        expect(shortFare.si).to.be.null
+        expect(shortFare.so).to.be.false
+      })
+    })
+  })
+
+  describe('#static fromMongoDoc', () => {
+    context('when given a valid MongoDB document', () => {
+      it('should return a new ShortFare object with the correct properties set', () => {
+        const mongoDoc = {
+          _id: {
+            a: 'AA',
+            o: 'LGA',
+            d: 'JFK',
+            dd: '2023-01-01',
+            rd: '2023-01-02',
+            c: 'USD',
+            jt: 'RT',
+            fc: 'E',
+            fi: 'Eco',
+            // btc: 'Premier',
+            ft: 'D',
+            se: 'en-US'
+          },
+          ca: new Date('2023-06-20T16:40:57.485Z'),
+          p: 1564.62,
+          si: '1234567890',
+          so: false,
+          ua: null
+        }
+
+        const shortFare = ShortFare.fromMongoDoc(mongoDoc)
+
+        expect(shortFare.a).to.equal(mongoDoc._id.a)
+        expect(shortFare.o).to.equal(mongoDoc._id.o)
+        expect(shortFare.d).to.equal(mongoDoc._id.d)
+        expect(shortFare.dd).to.equal(mongoDoc._id.dd)
+        expect(shortFare.rd).to.equal(mongoDoc._id.rd)
+        expect(shortFare.c).to.equal(mongoDoc._id.c)
+        expect(shortFare.jt).to.equal(mongoDoc._id.jt)
+        expect(shortFare.fc).to.equal(mongoDoc._id.fc)
+        expect(shortFare.fi).to.equal(mongoDoc._id.fi)
+        expect(shortFare.btc).to.equal(mongoDoc._id.btc)
+        expect(shortFare.ft).to.equal(mongoDoc._id.ft)
+        expect(shortFare.se).to.equal(mongoDoc._id.se)
+        expect(shortFare.u).to.be.undefined
+        expect(shortFare.am).to.be.undefined
+        expect(shortFare.p).to.equal(mongoDoc.p)
+        expect(shortFare.ca).to.equal(mongoDoc.ca)
+        expect(shortFare.ua).to.be.null
+        expect(shortFare.si).to.equal(mongoDoc.si)
+        expect(shortFare.so).to.equal(mongoDoc.so)
+      })
+    })
+  })
+
+  describe('#static fromObject', () => {
+    context('when given a valid object', () => {
+      it('should return a new ShortFare object with the correct properties set', () => {
+        const obj = {
+          airlineIataCode: 'AA',
+          departureAirportIataCode: 'LGA',
+          arrivalAirportIataCode: 'JFK',
+          outboundDate: '2023-01-01',
+          inboundDate: '2023-01-02',
+          currencyCode: 'USD',
+          journeyType: 'RT',
+          fareClass: 'E',
+          fareClassInput: 'Eco',
+          brandedFareClasst: 'Premier',
+          flightType: 'D',
+          siteEdition: 'en-US',
+          unit: 'M',
+          amount: 11223,
+          totalPrice: 100,
+          createdAt: new Date('2023-06-20T16:40:57.485Z'),
+          updatedAt: new Date(),
+          sourceId: '1234567890',
+          isSoldOut: false
+        }
+
+        const shortFare = ShortFare.fromObject(obj)
+
+        expect(shortFare.a).to.equal(obj.airlineIataCode)
+        expect(shortFare.o).to.equal(obj.departureAirportIataCode)
+        expect(shortFare.d).to.equal(obj.arrivalAirportIataCode)
+        expect(shortFare.dd).to.equal(obj.outboundDate)
+        expect(shortFare.rd).to.equal(obj.inboundDate)
+        expect(shortFare.c).to.equal(obj.currencyCode)
+        expect(shortFare.jt).to.equal(obj.journeyType)
+        expect(shortFare.fc).to.equal(obj.fareClass)
+        expect(shortFare.fi).to.equal(obj.fareClassInput)
+        expect(shortFare.btc).to.equal(obj.brandedFareClass)
+        expect(shortFare.ft).to.equal(obj.flightType)
+        expect(shortFare.se).to.equal(obj.siteEdition)
+        expect(shortFare.u).to.equal(obj.unit)
+        expect(shortFare.am).to.equal(obj.amount)
+        expect(shortFare.p).to.equal(obj.totalPrice)
+        expect(shortFare.ca).to.equal(obj.createdAt)
+        expect(shortFare.ua).to.equal(obj.updatedAt)
+        expect(shortFare.si).to.equal(obj.sourceId)
+        expect(shortFare.so).to.equal(obj.isSoldOut)
+      })
     })
   })
 

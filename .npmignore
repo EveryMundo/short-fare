@@ -3,3 +3,5 @@ temp/**
 coverage/*
 .nyc_output/*
 test/*
+bun.lockb
+*gz
