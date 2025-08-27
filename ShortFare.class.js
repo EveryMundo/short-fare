@@ -25,6 +25,8 @@ class ShortFare {
   si = undefined // sourceId
   so = false // isSoldOut
   fid = undefined // fareId
+  osc = undefined // outboundStopsCount
+  isc = undefined // inboundStopsCount
 
   constructor (emptyValue) {
     if (emptyValue !== undefined) {
@@ -47,6 +49,8 @@ class ShortFare {
       this.ua = emptyValue // createdAt
       this.si = emptyValue // sourceId
       this.fid = emptyValue // fareId
+      this.osc = emptyValue // outboundStopsCount
+      this.isc = emptyValue // inboundStopsCount
     }
   }
 
@@ -77,6 +81,8 @@ class ShortFare {
     sf.fc = _id.fc
     sf.fi = _id.fi
     sf.btc = _id.btc
+    sf.osc = _id.osc
+    sf.isc = _id.isc
     sf.p = p
     sf.u = u
     sf.am = am
@@ -114,6 +120,8 @@ class ShortFare {
     sf.sourceId = doc.sourceId
     sf.isSoldOut = doc.isSoldOut
     sf.fareId = doc.fareId
+    sf.outboundStopsCount = doc.outboundStopsCount
+    sf.inboundStopsCount = doc.inboundStopsCount
 
     return sf
   }
@@ -293,6 +301,26 @@ class ShortFare {
     this.p = v
   }
 
+  get outboundStopsCount () {
+    return this.osc
+  }
+
+  set outboundStopsCount (v) {
+    if (v !== undefined && typeof v !== 'number') throw new Error(`outboundStopsCount [${v}] is not a number`)
+
+    this.osc = v
+  }
+
+  get inboundStopsCount () {
+    return this.isc
+  }
+
+  set inboundStopsCount (v) {
+    if (v !== undefined && typeof v !== 'number') throw new Error(`inboundStopsCount [${v}] is not a number`)
+
+    this.isc = v
+  }
+
   get createdAt () {
     return this.ca
   }
@@ -346,7 +374,9 @@ class ShortFare {
       se: this.se,
       fc: this.fc,
       fi: this.fi,
-      btc: this.btc
+      btc: this.btc,
+      osc: this.osc,
+      isc: this.isc
     }
   }
 

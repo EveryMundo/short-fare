@@ -563,7 +563,9 @@ describe('ShortFare', () => {
           fi: 'Eco',
           btc: 'Premier',
           ft: 'D',
-          se: 'en-US'
+          se: 'en-US',
+          osc: undefined,
+          isc: undefined
         },
         ca: undefined,
         p: undefined,
@@ -613,7 +615,9 @@ describe('ShortFare', () => {
             fi: 'Eco',
             btc: 'Premier',
             ft: 'D',
-            se: 'en-US'
+            se: 'en-US',
+            osc: undefined,
+            isc: undefined
           }
         },
         {
